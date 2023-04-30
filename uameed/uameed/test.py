@@ -7,6 +7,10 @@ from tsp import (
     add_missing_edges,
 )
 
+from qiskit_machine_learning.kernels import FidelityQuantumKernel
+
+FidelityQuantumKernel
+
 
 graph = sample_graph_with_weights()
 
