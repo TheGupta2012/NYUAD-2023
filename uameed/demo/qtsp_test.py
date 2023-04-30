@@ -7,6 +7,10 @@ from uameed.demo.qtsp import (
     add_missing_edges,
 )
 
+from qiskit_machine_learning.kernels import FidelityQuantumKernel
+
+FidelityQuantumKernel
+
 
 graph = sample_graph_with_weights()
 
@@ -30,11 +34,13 @@ options = {
 }
 
 
-
-sampler = Sampler()
-
-# Sample run of TSP on hardware
-z, result = run_tsp_on_hardware(graph, sampler)
-print(result)
-print(z, "result")
-print("done")
+with Session(
+    service,
+    backend="ibmq_guadalupe",
+) as session:
+    sampler = Sampler(session=session, options=Options(options))
+    # Sample run of TSP on hardware
+    z, result = run_tsp_on_hardware(graph, sampler)
+    print(result)
+    print(z, "result")
+    print("done")
